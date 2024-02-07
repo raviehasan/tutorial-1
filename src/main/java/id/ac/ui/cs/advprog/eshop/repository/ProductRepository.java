@@ -25,12 +25,20 @@ public class ProductRepository {
     }
 
     public Product getProductById(String productId) {
-        Iterator<Product> productIterator = findAll();
-        while (productIterator.hasNext()) {
-            Product productData = productIterator.next();
-            if (productData.getProductId().equals(productId))
-                return productData;
+        Product wantedProduct = null;
+        for (Product product : productData) {
+            if (product.getProductId().equals(productId))
+                wantedProduct = product;
         }
-        return null;
+        return wantedProduct;
+    }
+
+    public void edit(String productId, Product editedProduct) {
+        String newName = editedProduct.getProductName();
+        int newQuantity = editedProduct.getProductQuantity();
+
+        Product productToEdit = getProductById(productId);
+        productToEdit.setProductName(newName);
+        productToEdit.setProductQuantity(newQuantity);
     }
 }
