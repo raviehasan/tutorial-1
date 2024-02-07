@@ -31,8 +31,10 @@
                     <a th:href="@{'/product/edit/' + ${product.productId}}" class="ml-1 btn btn-secondary btn-sm">
                         Edit
                     </a>
-                    <form th:action="@{'/product/delete/' + ${product.productId}}" th:method="get" class="ml-1">
-                        <button type="submit" class="btn btn-secondary btn-sm">Delete</button>
+                    <form th:action="@{'/product/delete/' + ${product.productId}}" th:method="delete" class="ml-1">
+                        <button type="submit" class="btn btn-secondary btn-sm">
+                            Delete
+                        </button>
                     </form>
                 </div>
             </td>
