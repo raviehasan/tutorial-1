@@ -36,7 +36,9 @@ public class ProductRepository {
     public void edit(String productId, Product editedProduct) {
         String newName = editedProduct.getProductName();
         int newQuantity = editedProduct.getProductQuantity();
-
+        if (newQuantity < 0)
+            newQuantity = 0;
+            
         Product productToEdit = getProductById(productId);
         productToEdit.setProductName(newName);
         productToEdit.setProductQuantity(newQuantity);
