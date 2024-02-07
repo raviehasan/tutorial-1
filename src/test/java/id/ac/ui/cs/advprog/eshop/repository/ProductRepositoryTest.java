@@ -1,22 +1,39 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
+import id.ac.ui.cs.advprog.eshop.controller.ProductController;
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.service.ProductService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.ui.Model;
 
 import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductRepositoryTest {
 
     @InjectMocks
     ProductRepository productRepository;
+
+    @InjectMocks
+    ProductController productController;
+
+    @Mock
+    ProductService productService;
+
+    @Mock
+    Model model;
 
     @BeforeEach
     void setUp() {
@@ -67,5 +84,76 @@ public class ProductRepositoryTest {
         savedProduct = productIterator.next();
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testEditProductPage() {
+        String productId = "b0f9de46-90b1-437d-a0bf-d0821dde9096";
+        Product product = new Product();
+        product.setProductId(productId);
+
+        when(productService.getProductById(productId)).thenReturn(product);
+
+        String viewName = productController.editProductPage(productId, model);
+        verify(model).addAttribute("product", product);
+        assertEquals("editProduct", viewName);
+    }
+
+    @Test
+    void testEditProductPutPositiveQuantity() {
+        Product product = new Product();
+        product.setProductId("b0f9de46-90b1-437d-a0bf-d0821dde9096");
+        product.setProductName("Ori");
+        product.setProductQuantity(1);
+
+        productRepository.create(product);
+
+        Product editingData = new Product();
+        editingData.setProductId("b0f9de46-90b1-437d-a0bf-d0821dde9096");
+        editingData.setProductName("Editing");
+        editingData.setProductQuantity(5);
+
+        productRepository.edit("b0f9de46-90b1-437d-a0bf-d0821dde9096", editingData);
+        Product editedProduct = productRepository.getProductById(editingData.getProductId());
+
+        assertEquals(editingData.getProductId(), editedProduct.getProductId());
+        assertEquals("Editing", editedProduct.getProductName());
+        assertEquals(5, editedProduct.getProductQuantity());
+    }
+
+    @Test
+    void testEditProductPutNegativeQuantity() {
+        Product product = new Product();
+        product.setProductId("b0f9de46-90b1-437d-a0bf-d0821dde9096");
+        product.setProductName("Ori");
+        product.setProductQuantity(1);
+
+        productRepository.create(product);
+
+        Product editingData = new Product();
+        editingData.setProductId("b0f9de46-90b1-437d-a0bf-d0821dde9096");
+        editingData.setProductName("Editing");
+        editingData.setProductQuantity(-5);
+
+        productRepository.edit("b0f9de46-90b1-437d-a0bf-d0821dde9096", editingData);
+        Product editedProduct = productRepository.getProductById(editingData.getProductId());
+
+        assertEquals(editingData.getProductId(), editedProduct.getProductId());
+        assertEquals("Editing", editedProduct.getProductName());
+        assertEquals(0, editedProduct.getProductQuantity());
+    }
+
+    @Test
+    void testDeleteProduct() {
+        Product product = new Product();
+        product.setProductId("b0f9de46-90b1-437d-a0bf-d0821dde9096");
+        product.setProductName("Ori");
+        product.setProductQuantity(1);
+
+        productService.create(product);
+
+        String viewName = productController.deleteProduct(product.getProductId());
+
+        assertEquals("redirect:../list", viewName);
     }
 }
