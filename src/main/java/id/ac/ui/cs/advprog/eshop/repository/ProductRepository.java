@@ -20,10 +20,17 @@ public class ProductRepository {
         return productData.iterator();
     }
 
-    public void remove(Product product) {
-        for (int i = 0; i < productData.size(); i++) {
-            if (productData.get(i).getProductid() == product.getProductid())
-                productData.remove(i);
+    public void delete(String productId) {
+        productData.remove(getProductById(productId));
+    }
+
+    public Product getProductById(String productId) {
+        Iterator<Product> productIterator = findAll();
+        while (productIterator.hasNext()) {
+            Product productData = productIterator.next();
+            if (productData.getProductId().equals(productId))
+                return productData;
         }
+        return null;
     }
 }
