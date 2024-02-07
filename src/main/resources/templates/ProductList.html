@@ -28,7 +28,7 @@
             <td th:text="${product.productQuantity}" class="text-center"></td>
             <td class="text-center">
                 <div class="d-flex justify-content-center align-items-center">    
-                    <form th:action="@{/product/remove}" th:object="${product}" method="post" class="ml-1">
+                    <form th:action="@{'/product/delete/' + ${product.productId}}" method="get" class="ml-1">
                         <button type="submit" class="btn btn-secondary btn-sm">Delete Product</button>
                     </form>
                 </div>
