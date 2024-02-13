@@ -7,11 +7,11 @@ plugins {
 }
 
 sonar {
-  properties {
-    property("sonar.projectKey", "raviehasan_tutorial-1")
-    property("sonar.organization", "raviehasan")
-    property("sonar.host.url", "https://sonarcloud.io")
-  }
+    properties {
+        property("sonar.projectKey", "raviehasan_tutorial-1")
+        property("sonar.organization", "raviehasan")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -83,4 +83,9 @@ tasks.test {
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
+
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
