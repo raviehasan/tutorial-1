@@ -18,6 +18,7 @@ WORKDIR /opt/eshop
 COPY --from=builder --chown=${USER_UID}:${USER_GID} /src/eshop/build/libs/*.jar app.jar
 
 EXPOSE 8080
+EXPOSE 8000
 
 ENTRYPOINT ["java"]
 CMD ["-jar", "app.jar"]
