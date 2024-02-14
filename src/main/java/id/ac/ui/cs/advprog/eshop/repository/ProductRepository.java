@@ -27,8 +27,9 @@ public class ProductRepository {
     public Product getProductById(String productId) {
         Product wantedProduct = null;
         for (Product product : productData) {
-            if (product.getProductId().equals(productId))
+            if (product.getProductId().equals(productId)) {
                 wantedProduct = product;
+            }
         }
         return wantedProduct;
     }
@@ -38,7 +39,7 @@ public class ProductRepository {
         int newQuantity = editedProduct.getProductQuantity();
         if (newQuantity < 0)
             newQuantity = 0;
-            
+
         Product productToEdit = getProductById(productId);
         productToEdit.setProductName(newName);
         productToEdit.setProductQuantity(newQuantity);
