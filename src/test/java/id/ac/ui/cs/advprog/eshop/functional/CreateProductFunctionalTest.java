@@ -18,11 +18,11 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith(SeleniumJupiter.class)
-public class CreateProductFunctionalTest {
-    
+class CreateProductFunctionalTest {
+
     @LocalServerPort
     private int serverPort;
-    
+
     private ChromeDriver driver;
 
     @BeforeEach
@@ -33,20 +33,20 @@ public class CreateProductFunctionalTest {
     @Test
     void testCreateProduct() {
         driver.get("http://localhost:" + serverPort + "/product/create");
-        
+
         WebElement nameInput = driver.findElement(By.id("nameInput"));
         nameInput.sendKeys("New Product Testing");
-        
+
         WebElement quantityInput = driver.findElement(By.id("quantityInput"));
         quantityInput.sendKeys("10");
-        
+
         WebElement submitButton = driver.findElement(By.tagName("button"));
         submitButton.click();
         driver.get("http://localhost:" + serverPort + "/product/list");
-        
+
         WebElement productList = driver.findElement(By.tagName("table"));
         String productListText = productList.getText();
-        
+
         assertEquals(true, productListText.contains("New Product Testing"));
     }
 
