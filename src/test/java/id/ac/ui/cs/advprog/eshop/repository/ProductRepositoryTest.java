@@ -96,7 +96,7 @@ public class ProductRepositoryTest {
 
         String viewName = productController.editProductPage(productId, model);
         verify(model).addAttribute("product", product);
-        assertEquals("editProduct", viewName);
+        assertEquals("EditProduct", viewName);
     }
 
     @Test
