@@ -43,14 +43,14 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment getPayment(String id) {
-        return paymentRepository.getPaymentById(id);
+        return paymentRepository.findById(id);
     }
 
     @Override
     public Payment setStatus(Payment payment, String status) {
         payment.setStatus(status);
 
-        if (paymentRepository.getPaymentById(payment.getId()) == null)
+        if (paymentRepository.findById(payment.getId()) == null)
             throw new NoSuchElementException("There is no such payment.");
 
         if (payment.getStatus().equals(PaymentStatus.SUCCESS.getValue()))

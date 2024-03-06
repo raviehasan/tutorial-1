@@ -79,7 +79,7 @@ class PaymentServiceImplTest {
                 voucherPayment.getMethod(),
                 voucherPayment.getPaymentData());
 
-        doReturn(voucherPayment).when(paymentRepository).getPaymentById(voucherPayment.getId());
+        doReturn(voucherPayment).when(paymentRepository).findById(voucherPayment.getId());
         Payment result = paymentService.getPayment(voucherPayment.getId());
         assertEquals(voucherPayment.getId(), result.getId());
         assertEquals(voucherPayment.getMethod(), result.getMethod());
@@ -100,7 +100,7 @@ class PaymentServiceImplTest {
                 bankPayment.getMethod(),
                 bankPayment.getPaymentData());
 
-        doReturn(bankPayment).when(paymentRepository).getPaymentById(bankPayment.getId());
+        doReturn(bankPayment).when(paymentRepository).findById(bankPayment.getId());
         Payment result = paymentService.getPayment(bankPayment.getId());
         assertEquals(bankPayment.getId(), result.getId());
         assertEquals(bankPayment.getMethod(), result.getMethod());
@@ -120,7 +120,7 @@ class PaymentServiceImplTest {
                 bankPayment.getMethod(),
                 bankPayment.getPaymentData());
 
-        doReturn(bankPayment).when(paymentRepository).getPaymentById(bankPayment.getId());
+        doReturn(bankPayment).when(paymentRepository).findById(bankPayment.getId());
         Payment result = paymentService.getPayment(bankPayment.getId());
         assertEquals(result.getStatus(), PaymentStatus.PENDING.getValue());
         paymentService.setStatus(result, PaymentStatus.SUCCESS.getValue());
@@ -142,7 +142,7 @@ class PaymentServiceImplTest {
                 voucherPayment.getMethod(),
                 voucherPayment.getPaymentData());
 
-        doReturn(voucherPayment).when(paymentRepository).getPaymentById(voucherPayment.getId());
+        doReturn(voucherPayment).when(paymentRepository).findById(voucherPayment.getId());
         Payment result = paymentService.getPayment(voucherPayment.getId());
         assertEquals(result.getStatus(), PaymentStatus.PENDING.getValue());
         paymentService.setStatus(result, PaymentStatus.SUCCESS.getValue());
@@ -174,7 +174,7 @@ class PaymentServiceImplTest {
     @Test
     void testUpdateBankPaymentStatusToUnregiesteredPayment() {
         Payment bankPayment = payments.get(1);
-        doReturn(null).when(paymentRepository).getPaymentById(bankPayment.getId());
+        doReturn(null).when(paymentRepository).findById(bankPayment.getId());
         assertThrows(NoSuchElementException.class,
                 () -> paymentService.setStatus(bankPayment, PaymentStatus.SUCCESS.getValue()));
     }
@@ -182,7 +182,7 @@ class PaymentServiceImplTest {
     @Test
     void testUpdateVoucherPaymentStatusToUnregiesteredPayment() {
         Payment voucherPayment = payments.get(0);
-        doReturn(null).when(paymentRepository).getPaymentById(voucherPayment.getId());
+        doReturn(null).when(paymentRepository).findById(voucherPayment.getId());
         assertThrows(NoSuchElementException.class,
                 () -> paymentService.setStatus(voucherPayment, PaymentStatus.SUCCESS.getValue()));
     }
@@ -190,7 +190,7 @@ class PaymentServiceImplTest {
     @Test
     void testFindByIdIfIdIsFoundAndExists() {
         Payment payment = payments.get(1);
-        doReturn(payment).when(paymentRepository).getPaymentById(payment.getId());
+        doReturn(payment).when(paymentRepository).findById(payment.getId());
         Payment result = paymentService.getPayment(payment.getId());
         assertEquals(payment.getId(), result.getId());
         assertEquals(payment.getMethod(), result.getMethod());
@@ -200,7 +200,7 @@ class PaymentServiceImplTest {
 
     @Test
     void testFindByIdIfIdIsNotFound() {
-        doReturn(null).when(paymentRepository).getPaymentById("zczc");
+        doReturn(null).when(paymentRepository).findById("zczc");
         assertNull(paymentService.getPayment("zczc"));
     }
 
