@@ -12,7 +12,7 @@
 
 ### Refleksi
 
-TDD flow pada tutorial kali ini berguna bagi saya karena saya memikiki goal yang ingin dicapai pada saat membuat test. Sehingga, jika output berjalan tidak sesuai expected goal, dapat segera dihandle. Hal ini juga membuat tujuan program semakin jelas.Selain itu, saya juga menjalankan test frequently karena dalam proses pengerjaan terdapat beberapa kali modifikasi kode, sehingga perlu dipastikan apakah berjalan as expected pada goal awal.
+TDD flow pada tutorial kali ini berguna bagi saya karena saya memikiki goal yang ingin dicapai pada saat membuat test. Sehingga, jika output berjalan tidak sesuai expected goal, dapat segera dihandle. Hal ini juga membuat tujuan program semakin jelas.Selain itu, saya juga menjalankan test frequently karena dalam proses pengerjaan terdapat beberapa kali modifikasi kode, sehingga perlu dipastikan apakah berjalan as expected pada goal awal. Selain itu, tahap refactoring juga menjadi lebih mudah, karena bisa melakukan automated testing (dalam artian, hanya perlu klik button test 1x untuk menjamin apakah kode setelah refactor tetap berjalan as expected).
 
 - Fast: Test yang saya rancang berjalan dengan cepat
 - Isolated: Setiap test yang saya rancang memiliki fungsi yang berbeda antar test (tujuan setiap method test distinguishable), sehingga fail di suatu test tidak akan berdampak pada test lainnya
