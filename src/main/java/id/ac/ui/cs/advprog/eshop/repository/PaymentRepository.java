@@ -21,7 +21,7 @@ public class PaymentRepository {
         return toBeSavedPayment;
     }
 
-    public Payment getPaymentById(String paymentId) {
+    public Payment findById(String paymentId) {
         for (Payment payment : payments) {
             if (payment.getId().equals(paymentId))
                 return payment;
