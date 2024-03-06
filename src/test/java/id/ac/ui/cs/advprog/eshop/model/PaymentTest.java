@@ -65,6 +65,7 @@ class PaymentTest {
         Payment payment = new Payment(
                 "eb558e9f-1c39-460e-8860-71af6af63bd6", "",
                 order, paymentData);
+    
         assertSame(payment.getOrder(), order);
         assertNull(payment.getPaymentData());
         assertEquals("eb558e9f-1c39-460e-8860-71af6af63bd6", payment.getId());
