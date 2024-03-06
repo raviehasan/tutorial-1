@@ -32,10 +32,6 @@ Dengan demikian, saya telah menerapkan prinsip FIRST.
 
 ### Refleksi
 
-</details>
-
-<br>
-
 1. Explain what principles you apply to your project!
 
 - Single Responsibility Principle (SRP) -> Menghapus hubungan inheritance antara CarController dengan ProductController (CarController no longer extends ProductController). Hal ini karena keduanya memiliki fungsi yang berbeda dan tidak perlu dihubungkan dengan relasi inheritance.
