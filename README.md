@@ -8,9 +8,33 @@
 
 <details>
 
+<summary> Tutorial 4 </summary>
+
+### Refleksi
+
+TDD flow pada tutorial kali ini berguna bagi saya karena saya memikiki goal yang ingin dicapai pada saat membuat test. Sehingga, jika output berjalan tidak sesuai expected goal, dapat segera dihandle. Hal ini juga membuat tujuan program semakin jelas.Selain itu, saya juga menjalankan test frequently karena dalam proses pengerjaan terdapat beberapa kali modifikasi kode, sehingga perlu dipastikan apakah berjalan as expected pada goal awal.
+
+- Fast: Test yang saya rancang berjalan dengan cepat
+- Isolated: Setiap test yang saya rancang memiliki fungsi yang berbeda antar test (tujuan setiap method test distinguishable), sehingga fail di suatu test tidak akan berdampak pada test lainnya
+- Repeatable: Agar tetap konsisten pada setiap kali run test
+- Self-validating: Test yang saya rancang self-validating karena ada assertions untuk memastikan apakah program berjalan as expected
+- Timely: Test saya buat di awal (TDD) dan saya tambahkan jika ingin melakukan modifikasi, sehingga setiap perubahan dipastikan telah teruji
+
+Dengan demikian, saya telah menerapkan prinsip FIRST.
+
+</details>
+
+<br>
+
+<details>
+
 <summary> Tutorial 3 </summary>
 
 ### Refleksi
+
+</details>
+
+<br>
 
 1. Explain what principles you apply to your project!
 
@@ -18,7 +42,7 @@
 - (Open-Closed Principle) OCP -> Perubahan data types untuk carService menjadi CarService interface (tidak lagi CarServiceImpl). Selain best practices untuk menggunakan interface sebagai data types, hal ini juga termasuk implementasi dari open closed principle karena open for extension and closed for modification.
 - (Liskov Substitution Principle) LSP -> Mengubah CarController menjadi independent class dengan tidak menjadi subclass ProductController. Penghapusan hubungan inheritance ini juga sesuai dengan LSP.
 - Interface Segregation Principle (ISP) -> Mengubah CarServiceImpl menjadi simply suatu interface CarService pada file CarController.java. Hal ini sesuai dengan ISP karena tidak ada interface yang irrelevant.
-- (Dependency Inversion Principle) DIP -> Menggunakan CarService bukan CarServiceImpl sebagai placeholder data types. Hal ini sesuai dengan DIP karena mengabstraksi data rather than implementasi konkret dari CarServiceImpl untuk berperan pada car controller. 
+- (Dependency Inversion Principle) DIP -> Menggunakan CarService bukan CarServiceImpl sebagai placeholder data types. Hal ini sesuai dengan DIP karena mengabstraksi data rather than implementasi konkret dari CarServiceImpl untuk berperan pada car controller.
 
 2. Explain the advantages of applying SOLID principles to your project with examples.
 
